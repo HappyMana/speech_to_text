@@ -126,7 +126,7 @@ class speech_server():
                     print('Exiting..')
                     break
                 num_chars_printed = 0
-        return transcript + overwrite_chars
+        return (transcript + overwrite_chars).lower()
 
     def main(self,req):
         language_code = 'en-US'
@@ -150,7 +150,7 @@ class speech_server():
                 for content in audio_generator
             )
             responses = client.streaming_recognize(streaming_config, requests)
-            return sttResponse(result_str = self.listen_print_loop(responses))
+            return sttResponse(result = self.listen_print_loop(responses))
 
 
 if __name__=='__main__':
